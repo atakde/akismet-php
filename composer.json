@@ -1,0 +1,21 @@
+{
+    "name": "atakde/akismet-php",
+    "description": "Akismet wrapper for PHP 8",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Atakde\\AkismetPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Atakan Demircioğlu",
+            "homepage": "https://atakann.com/",
+            "email": "me@atakann.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.9",
+        "ext-curl": "*"
+    }
+}
