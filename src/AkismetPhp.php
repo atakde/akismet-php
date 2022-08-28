@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Atakde\AkismetPhp;
 
+use Atakde\AkismetPhp\Exception\InvalidApiKey;
+use Atakde\AkismetPhp\Exception\InvalidCheckType;
 use Atakde\AkismetPhp\Exception\InvalidResponseException;
 
 /**
@@ -28,6 +30,7 @@ class AkismetPhp
     private ?string $akismetKey = null;
     private string $akismetVersion = '1.1';
     private string $checkType = 'comment-check';
+    private array $checkTypes = ['comment-check', 'submit-spam', 'submit-ham'];
 
     public function setUserIp(string $userIp): self
     {
@@ -102,6 +105,8 @@ class AkismetPhp
 
     public function checkSpam(): bool
     {
+        $this->checkRequiredFields();
+
         $params = [
             'user_ip' => $this->userIp,
             'user_agent' => $this->userAgent,
@@ -138,10 +143,20 @@ class AkismetPhp
                 }
             }
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            exit;
+            throw new InvalidResponseException($e->getMessage());
         }
 
         return false;
+    }
+
+    public function checkRequiredFields(): void
+    {
+        if (empty($this->akismetKey)) {
+            throw new InvalidApiKey();
+        }
+
+        if (!in_array($this->checkType, $this->checkTypes)) {
+            throw new InvalidCheckType();
+        }
     }
 }

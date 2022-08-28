@@ -6,9 +6,9 @@ namespace Atakde\AkismetPhp\Exception;
 
 use Exception;
 
-class InvalidResponseException extends Exception
+class InvalidCheckType extends Exception
 {
-    public function __construct($message = 'Invalid response!', $code = 500)
+    public function __construct($message = 'Check type is invalid', $code = 500)
     {
         parent::__construct($message, $code);
     }
