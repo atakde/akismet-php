@@ -17,5 +17,17 @@
     "require": {
         "php": ">=8.0.9",
         "ext-curl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atakde\\DiscordWebhook\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "coverage": "vendor/bin/phpunit --coverage-html coverage"
     }
 }

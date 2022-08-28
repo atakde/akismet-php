@@ -98,6 +98,12 @@ class AkismetPhp
         return $this;
     }
 
+    public function setCheckType(string $checkType): self
+    {
+        $this->checkType = $checkType;
+        return $this;
+    }
+
     public function createAkismetEndpoint(): string
     {
         return 'https://' . $this->akismetKey . '.rest.akismet.com/' . $this->akismetVersion . '/' . $this->checkType;
